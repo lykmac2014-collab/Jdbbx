@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDTAG Clone</title>
+    <style>
+        /* Убираем отступы и фиксируем фон */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000 url('ф.png') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        /* Стиль изображения-кнопки */
+        #main-btn {
+            cursor: pointer;
+            max-width: 90vw;
+            max-height: 80vh;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s active;
+        }
+
+        /* Эффект нажатия (чуть уменьшается при клике) */
+        #main-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Само изображение к.png, которое работает как кнопка -->
+    <img src="к.png" id="main-btn" alt="Play" onclick="toggleAudio()">
+
+    <!-- Скрытый аудио-плеер -->
+    <audio id="player" src="з.m4a" loop></audio>
+
+    <script>
+        const audio = document.getElementById('player');
+        
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play().catch(e => console.log("Ошибка воспроизведения:", e));
+            } else {
+                audio.pause();
+                audio.currentTime = 0; // Сброс звука в начало при повторном клике
+            }
+        }
+    </script>
+
+</body>
+</html>
